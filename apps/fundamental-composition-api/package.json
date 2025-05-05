@@ -1,0 +1,8 @@
+{
+  "name": "@learning/fundamental-composition-api",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "fundamental-composition-api"
+  }
+}
