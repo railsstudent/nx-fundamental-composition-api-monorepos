@@ -22,14 +22,15 @@ pre {
 ::before,
 ::after {
   box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: currentColor;
+  padding: 0;
+  margin: 0;
+  // border-style: solid;
+  // border-color: currentColor;
 }
 h1,
 h2 {
-  font-size: inherit;
-  font-weight: inherit;
+  // font-size: inherit;
+  // font-weight: inherit;
 }
 a {
   color: inherit;
