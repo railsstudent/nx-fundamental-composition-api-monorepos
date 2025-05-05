@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const name = ref('Vue 3 Composition API')
+const header = ref('Shopping List App')
 
 </script>
 
@@ -9,8 +9,7 @@ const name = ref('Vue 3 Composition API')
   <div class="wrapper">
     <div class="container">
       <div id="welcome">
-        <h1>Hello, {{ name }}</h1>
-        Input: <input v-model="name" />
+        <h1>{{ header || 'Welcome' }}</h1>
       </div>
     </div>
   </div>
