@@ -10,7 +10,13 @@ const items = ref([
 
 const newItem = ref('');
 const newItemHighPriority = ref(false);
-const icecreamFlavors = ref<string[]>([])
+// const icecreamFlavors = ref<string[]>([])
+
+const saveItem = () => {
+  items.value.push({ id: items.value.length + 1, label: newItem.value });
+  newItem.value = '';
+};
+
 </script>
 
 <template>
@@ -19,15 +25,18 @@ const icecreamFlavors = ref<string[]>([])
       <h1>{{ header || 'Welcome' }}</h1>
       <ul>
         <li v-for="{ id, label } in items" :key="id">
-          {{ label }}
+          {{id}} - {{ label }}
         </li>
       </ul>
-      <input v-model.lazy="newItem" placeholder="Add new item" />
-      <input type="checkbox" v-model="newItemHighPriority" />High Priority
-      <br />
+      <form @submit.prevent="saveItem()">
+        <input v-model.trim="newItem"  placeholder="Add new item" />
+        <input type="checkbox" v-model="newItemHighPriority" />High Priority
+        <button class="btn btn-primary">Save Item</button>
+      </form>
+      <!-- <br />
       <input type="checkbox" v-model="icecreamFlavors" value="vanilla" /> Vanilla
       <input type="checkbox" v-model="icecreamFlavors" value="chocolate chips" /> Cholocate Chips
-      <input type="checkbox" v-model="icecreamFlavors" value="strawberry" /> Strawberry
+      <input type="checkbox" v-model="icecreamFlavors" value="strawberry" /> Strawberry -->
     </div>
   </div>
 </template>
