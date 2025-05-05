@@ -8,6 +8,9 @@ const items = ref([
   { id: 3, label: '5 Oranges' }
 ]);
 
+const newItem = ref('');
+const newItemHighPriority = ref(false);
+const icecreamFlavors = ref<string[]>([])
 </script>
 
 <template>
@@ -19,6 +22,12 @@ const items = ref([
           {{ label }}
         </li>
       </ul>
+      <input v-model.lazy="newItem" placeholder="Add new item" />{{  newItem }}
+      <input type="checkbox" v-model="newItemHighPriority" />High Priority {{  newItemHighPriority }}
+      <br />
+      <input type="checkbox" v-model="icecreamFlavors" value="vanilla" /> Vanilla
+      <input type="checkbox" v-model="icecreamFlavors" value="chocolate chips" /> Cholocate Chips
+      <input type="checkbox" v-model="icecreamFlavors" value="strawberry" /> Strawberry
     </div>
   </div>
 </template>
