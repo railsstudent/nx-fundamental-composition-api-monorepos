@@ -22,8 +22,8 @@ const icecreamFlavors = ref<string[]>([])
           {{ label }}
         </li>
       </ul>
-      <input v-model.lazy="newItem" placeholder="Add new item" />{{  newItem }}
-      <input type="checkbox" v-model="newItemHighPriority" />High Priority {{  newItemHighPriority }}
+      <input v-model.lazy="newItem" placeholder="Add new item" />
+      <input type="checkbox" v-model="newItemHighPriority" />High Priority
       <br />
       <input type="checkbox" v-model="icecreamFlavors" value="vanilla" /> Vanilla
       <input type="checkbox" v-model="icecreamFlavors" value="chocolate chips" /> Cholocate Chips
