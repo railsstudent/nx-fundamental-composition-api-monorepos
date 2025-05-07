@@ -2,11 +2,7 @@
 import { ref } from 'vue';
 
 const header = ref('Shopping List App')
-const items = ref([
-  { id: 1, label: '10 Apples' },
-  { id: 2, label: '20 Bananas' },
-  { id: 3, label: '5 Oranges' }
-]);
+const items = ref<{ id: number, label: string }[]>([]);
 
 const newItem = ref('');
 const newItemHighPriority = ref(false);
@@ -17,27 +13,36 @@ const saveItem = () => {
   newItem.value = '';
 };
 
+const isEditing = ref(false);
+
+const toggleEditing = () => {
+  isEditing.value = !isEditing.value;
+};
+
 </script>
 
 <template>
   <div class="wrapper">
-    <div class="container">
+    <div class="header">
       <h1>{{ header || 'Welcome' }}</h1>
-      <ul>
-        <li v-for="{ id, label } in items" :key="id">
-          {{id}} - {{ label }}
-        </li>
-      </ul>
-      <form @submit.prevent="saveItem()">
-        <input v-model.trim="newItem"  placeholder="Add new item" />
-        <input type="checkbox" v-model="newItemHighPriority" />High Priority
-        <button class="btn btn-primary">Save Item</button>
-      </form>
-      <!-- <br />
-      <input type="checkbox" v-model="icecreamFlavors" value="vanilla" /> Vanilla
-      <input type="checkbox" v-model="icecreamFlavors" value="chocolate chips" /> Cholocate Chips
-      <input type="checkbox" v-model="icecreamFlavors" value="strawberry" /> Strawberry -->
+      <button class="btn" v-if="isEditing" @click="toggleEditing">Cancel</button>
+      <button class="btn btn-primary" v-else @click="toggleEditing">Add Item</button>
     </div>
+    <form class="add-item-form" v-if="isEditing" @submit.prevent="saveItem">
+      <input v-model.trim="newItem"  placeholder="Add new item" />
+      <input type="checkbox" v-model="newItemHighPriority" />High Priority
+      <button class="btn btn-primary">Save Item</button>
+    </form>    
+    <ul v-if="items.length > 0">
+      <li v-for="{ id, label } in items" :key="id">
+        {{id}} - {{ label }}
+      </li>
+    </ul>
+    <p v-else>Nothing to see here.</p>
+    <!-- <br />
+    <input type="checkbox" v-model="icecreamFlavors" value="vanilla" /> Vanilla
+    <input type="checkbox" v-model="icecreamFlavors" value="chocolate chips" /> Cholocate Chips
+    <input type="checkbox" v-model="icecreamFlavors" value="strawberry" /> Strawberry -->
   </div>
 </template>
 
