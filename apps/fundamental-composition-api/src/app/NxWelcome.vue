@@ -17,6 +17,7 @@ const isEditing = ref(false);
 
 const toggleEditing = () => {
   isEditing.value = !isEditing.value;
+  newItem.value = '';
 };
 
 </script>
