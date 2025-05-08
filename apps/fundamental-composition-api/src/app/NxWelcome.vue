@@ -15,8 +15,8 @@ const saveItem = () => {
 
 const isEditing = ref(false);
 
-const toggleEditing = () => {
-  isEditing.value = !isEditing.value;
+const toggleEditing = (value: boolean) => {
+  isEditing.value = value;
   newItem.value = '';
 };
 
@@ -26,8 +26,8 @@ const toggleEditing = () => {
   <div class="wrapper">
     <div class="header">
       <h1>{{ header || 'Welcome' }}</h1>
-      <button class="btn" v-if="isEditing" @click="toggleEditing">Cancel</button>
-      <button class="btn btn-primary" v-else @click="toggleEditing">Add Item</button>
+      <button class="btn" v-if="isEditing" @click="toggleEditing(false)">Cancel</button>
+      <button class="btn btn-primary" v-else @click="toggleEditing(true)">Add Item</button>
     </div>
     <form class="add-item-form" v-if="isEditing" @submit.prevent="saveItem">
       <input v-model.trim="newItem"  placeholder="Add new item" />
